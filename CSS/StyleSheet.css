@@ -1,0 +1,341 @@
+* {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	text-decoration: none;
+	border: none;
+	outline: none;
+	font-family: Kotex-Bold;
+}
+
+body {
+	background-color: #480089;
+	-webkit-text-size-adjust: 100%;
+}
+
+img {
+	width: 100%;
+}
+
+@font-face {
+	font-family: Kotex-Bold;
+	src: url(../Fonts/Kotex-Bold.woff);
+}
+
+/* Configuración contenedor general */
+
+.Content {
+	display: block;
+	height: 100vh;
+	min-height: 100%;
+	width: 100vw;
+	text-align: center;
+}
+
+#BackgroundImage {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 2px;
+	bottom: 0;
+	z-index: -1;
+}
+#BackgroundImageMsg {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 2px;
+	bottom: 0;
+	z-index: 1;
+}
+
+/* Página Home */
+
+.ContainerRuletaHome {
+	position: absolute;
+	transform: translate(-50%, -50%);
+	top: 47%;
+	left: 50%;
+	width: 54%;
+	height: 30.6%;
+}
+
+.FondoRuletaHome {
+	position: absolute;
+	z-index: 5;
+	top: 0;
+	left: 0;
+	animation: rotation 2s infinite linear;
+}
+
+@keyframes rotation {
+	from {
+		transform: rotate(0deg);
+	}
+
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+.CaraRuletaHome {
+	position: absolute;
+	z-index: 6;
+	top: 0;
+	left: 0;
+	transform: rotate(345deg);
+	filter: drop-shadow(-20px 40px 40px #000000bb);
+}
+
+.IndicadorRuletaHome {
+	position: absolute;
+	z-index: 7;
+	top: 0;
+	left: 0;
+
+}
+
+.FirmaHome {
+	position: absolute;
+	top: 48%;
+	right: 3%;
+	z-index: 10;
+	width: 40%;
+}
+
+.Btn_Jugar {
+	position: absolute;
+	top: 75%;
+	right: 7%;
+	z-index: 10;
+	width: 30%;
+	filter: drop-shadow(0px 0px 14px #000000bb);
+}
+
+.PersonajeHome {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	z-index: 10;
+}
+
+
+/* Página Home */
+
+.ContainerRuleta {
+	position: absolute;
+	transform: translate(-50%, -50%);
+	top: 52%;
+	left: 50%;
+	width: 85%;
+	height: 48%;
+}
+
+.FondoRuleta {
+	position: absolute;
+	z-index: 5;
+	top: 0;
+	left: 0;
+	filter: drop-shadow(0px 0px 30px #f416b8);
+}
+
+
+.Btn_Girar {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 25%;
+	transform: translate(-50%, -50%);
+	z-index: 10;
+	filter: drop-shadow(0px 0px 14px #000000bb);
+}
+
+.IndicadorRuleta {
+	position: absolute;
+	z-index: 7;
+	left: 50%;
+	top: 1%;
+	width: 10%;
+	transform: translateX(-50%);
+}
+
+/*Página preguntas*/
+.FondoTiempo{
+	position:absolute;
+	top:3vh;
+	right:5vh;
+	background:url(../Images/IconoTiempo.svg) no-repeat center center;
+	background-size: contain;
+	padding:5.7vh 0 0 3.8vh;
+	color: white;
+	font-size:3.2vh;
+	font-weight: 900;
+	text-align: left;
+	filter: drop-shadow(0px 0px 4px #000000bb);
+}
+
+.BloquePreguntas {
+	font-size: 2.3vh;
+	color: #4d0084;
+	background-color: #fff;
+	width: 75%;
+	margin: 0 auto;
+	border-radius: 50vw;
+	display: inline-block;
+	padding: 6vw 6vw 4vw 6vw;
+	filter: drop-shadow(0px 0px 15px #f416b8);
+
+}
+
+.BloqueRespuestas {
+	width: 80%;
+	margin: 0 auto;
+}
+
+.ContenedorRespuesta {
+
+	display: flex;
+	align-items: center;
+
+}
+
+.EmoticonRespuestas {
+	width: 15%;
+	float: left;
+	padding-right: 2vh;
+}
+
+.BotonRespuesta {
+	font-size: 1.8vh;
+	color: #4d0084;
+	background-color: #fff;
+	width: 85%;
+	margin: 0 auto;
+	border-radius: 7vw;
+	display: inline-block;
+	padding: 5vw 6vw 4vw 6vw;
+	filter: drop-shadow(0px 0px 15px #f416b8);
+	text-align: left;
+	float: left;
+
+}
+
+.RespuestaCorrecta{
+	background-color: #5ce792;
+	color: #ffffff;
+}
+
+.PreguntaCorrecta {
+background-color: #5ce792;
+color: #5ce792;
+
+}
+
+.TextoCorrecto{
+	position: absolute;
+	top:60%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index:20;
+	font-size: 4vh;
+	color:#fff;
+}
+
+.RespuestaIncorrecta{
+	background-color: #db324f;
+	color: #FFF;
+}
+.PreguntaIncorrecta {
+background-color: #db324f;
+color: #db324f;
+}
+
+.TextoIncorrecto{
+	position: absolute;
+	top:50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index:20;
+	font-size: 4vh;
+	color:#fff;
+	text-align: initial;
+	line-height: .7em;
+}
+
+.TextoIncorrectoEstiloInicio{
+	font-size: 2vh;
+}
+
+.BotonSeguirJugando{
+	background-color: #fff;
+	position: absolute;
+	bottom:2vh;
+	left:5vh;
+	filter: drop-shadow(0px 0px 15px #000000bb);
+	color:#7818ac;
+	font-size: 2.5vh;
+	padding:2vh 2vh 1.3vh 2vh;
+	border-radius: 50vh;
+	border: .7vh solid #a980f4;
+}
+
+/*Overlay puntaje*/
+
+.ContenedorPuntaje{
+	position:absolute;
+	width:100vw;
+	height:100vh;
+	z-index:100;
+	top:0;
+}
+.OverlayFinal{
+	position:absolute;
+	width:100vw;
+	height:100vh;
+	background-color: #a980f4;
+	opacity: .84;
+	top:0;
+}
+
+.PuntajeFinal{
+	background-color: #fff;
+	position: absolute;
+	top:50vh;
+	left:50vw;
+	filter: drop-shadow(0px 0px 50px #2e0044);
+	color:#7818ac;
+	font-size: 2.5vh;
+	padding:6.6vh 18vw 0vh 18vw;
+	border-radius: 50vh;
+	border: 1.2vh solid #a980f4;
+	transform: translate(-50%, -50%);
+	z-index:101;
+	font-size: 10vw;
+}
+
+.NumeroPuntaje{
+font-size: 22vw;
+line-height: .1em;
+}
+
+.BotonFinalizar{
+	background-color: #fff;
+	position: absolute;
+	top:70%;
+	left:50%;
+	filter: drop-shadow(0px 0px 15px #2e0044);
+	color:#7818ac;
+	font-size: 2.5vh;
+	padding:2vh 2vh 1.3vh 2vh;
+	border-radius: 50vh;
+	border: .7vh solid #a980f4;
+	transform: translate(-50%, -50%);
+
+}
