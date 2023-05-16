@@ -12,41 +12,41 @@
    <body>
       <div class="Content">
       <img src="../Images/FondoTampon.jpg" id="BackgroundImage" alt="">
-      <div class="FondoTiempo">60</div>
+      <div class="FondoTiempo">00</div>
       <div style="height:16vh;"></div>
-      <div class="BloquePreguntas PreguntaIncorrecta">
-        ¿Existe algún producto Kotex especialmente diseñado para las chicas que se encuentran en los primeros años del periodo menstrual?
-
+      <div class="BloquePreguntas ">
+      <!-- <div class="BloquePreguntas PreguntaIncorrecta"> -->
+         <span id="statement"></span>
       <!--Retroalimentación Respuesta -->
          <div class="TextoCorrecto" style="display:none">CORRECTO</div>
-         <div class="TextoIncorrecto" style="display:block"><span class="TextoIncorrectoEstiloInicio">NO ES </span>CORRECTO</div>
+         <div class="TextoIncorrecto" style="display:none"><span class="TextoIncorrectoEstiloInicio">NO ES </span>CORRECTO</div>
            <!--Retroalimentación Respuesta -->
       </div>
       <div style="height:6vh;"></div>
       <div class="BloqueRespuestas" id="contRespuestas">
          <div class="ContenedorRespuesta">
             <img src="../Images/EmoticonRespuestas.png" class="EmoticonRespuestas">
-            <div class="BotonRespuesta RespuestaCorrecta">
-               Algunas investigaciones indican que es cierto, pero otras muestran que no. Aunque es dificil de demostrar, es posible que si haya algo de cierto en este mito.
+            <!-- <div id="ans0" class="BotonRespuesta RespuestaCorrecta"> -->
+            <div id="ans0" class="BotonRespuesta ">
             </div>
          </div>
          <div style="height:2vh;"></div>
          <div class="ContenedorRespuesta">
             <img src="../Images/EmoticonRespuestas.png" class="EmoticonRespuestas">
-            <div class="BotonRespuesta RespuestaIncorrecta">
-               Es absurdo.
+            <!-- <div id="ans1" class="BotonRespuesta RespuestaIncorrecta"> -->
+            <div id="ans1" class="BotonRespuesta ">
             </div>
          </div>
          <div style="height:2vh;"></div>
          <div class="ContenedorRespuesta">
             <img src="../Images/EmoticonRespuestas.png" class="EmoticonRespuestas">
-            <div class="BotonRespuesta">
-               100% comprobado.
+            <div id="ans2" class="BotonRespuesta">
             </div>
          </div>
       </div>
-      <a class="BotonSeguirJugando">SEGUIR JUGANDO</a>
+      <a id="nextQuestion" class="BotonSeguirJugando" transparent>SEGUIR JUGANDO</a>
 
+      <div id="modalEnd"> </div>
 
 
    </body>

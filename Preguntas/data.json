@@ -1,141 +1,4 @@
-function ñ(el) { switch (el.charAt(0)) { case "#":  return document.querySelector(el); case ".":  return Array.from(document.querySelectorAll(el)); default:   return document.getElementsByTagName(el); } }
-function ConmuteClassAndInner(element, c1, c2){ element.classList.add(c1); element.classList.remove(c2); }
-Element.prototype.ñappend = function(newE) { this.appendChild(newE); }
-Element.prototype.ñclick = function(callback) { this.addEventListener("click", (e)=> { callback(e); }); };
-
-const turns = 4
-const timeAnim = 5
-const urlParams = new URLSearchParams(window.location.search);
-const actualQuestion=   Array.from(urlParams.values())[0]??-1;
-let countdownTimer = {}
-let totalPoints = 0
-let pointsBySuccess = 100
-let timeByAns = 60
-let timeleft = timeByAns-1
-
-
-
-function RandomInt(max) {
-    return Math.floor(Math.random() * max);
-}
-function GoTo(url,par) {
-    location.href = './HTML/'+url+'.html'+'?'+par
-}
-
-
-
-function ShowMessageCharacter(id) {
-    return new Promise((resolve,reject)=>{
-        let msg = `
-            <img src="../Images/Ventana${id}.jpg" id="BackgroundImageMsg" alt="">
-        `
-        resolve(ñ('#messageCharacter').innerHTML =msg);
-    });
-}
-
-window.addEventListener("load",()=>{
-    // today =  Date.now();
-    // setTimeout(() => {console.log(Date.now()-today );}, 2000);
-    // console.log(today );
-
-    ñ("#playGame")?.ñclick(() => SetNewGame() );
-    ñ("#spinRoulette")?.ñclick(()=> Spin());
-    ñ("#nextQuestion")?.ñclick(()=> GoTo('../Ruleta',''));
-    if(actualQuestion>=0)
-        SetQuestion(getQuestions()[actualQuestion]);
-});
-
-function SetNewGame() {
-    GoTo('Ruleta','')
-    localStorage.setItem("time", Date.now());
-}
-
-function SetQuestion(q) {
-    RunTimer()
-    ñ('#statement').innerHTML = q.statement
-    q.Answers.forEach((ans,i) =>{ 
-        ñ('#ans'+i).innerHTML = ans.text;
-        ñ('#ans'+i).ñclick(()=> Answer(ans));
-    });
-}
-
-function Answer(ans) {
-    let classTarget = ans.isCorrect ?'RespuestaCorrecta':'RespuestaIncorrecta';
-
-    totalPoints += ans.isCorrect? pointsBySuccess:0
-    AnimateAnswer(ñ('#ans'+ans.id), classTarget,  120);
-}
-
-
-const AnimateAnswer = ( element, classTarget, interval)=>{
-    ñ('#contRespuestas').classList.add('avoidEvents');
-    ConmuteClassAndInner(element,classTarget,'dumb')
-    setTimeout(() => {ConmuteClassAndInner(element,'dumb',classTarget)}, interval);
-    setTimeout(() => {ConmuteClassAndInner(element,classTarget,'dumb')}, interval*2);
-    setTimeout(() => {ConmuteClassAndInner(element,'dumb',classTarget)}, interval*3);
-    setTimeout(() => {ConmuteClassAndInner(element,classTarget,'dumb')}, interval*4);
-    setTimeout(() => { ñ('#nextQuestion').removeAttribute('transparent');}, interval*5);
-}
-
-
-function Spin(){
-    target = RandomInt(6);
-    AddAnim(turns*360+target*60);
-    setTimeout(() => {ShowMessageCharacter(target);GoQuestion(target)}, timeAnim*1000)
-}
-
-function GoQuestion(qId) {
-    setTimeout(() => {GoTo('../Pregunta',`q=${qId}`)}, 1950);
-}
-
-const RunTimer = ()=>{
-    timeleft = timeByAns-parseInt((Date.now()- localStorage.getItem("time"))/1000);
-    ñ(".FondoTiempo")[0].textContent =timeleft
-    countdownTimer = setInterval(() => {
-        ñ(".FondoTiempo")[0].textContent =timeleft
-        timeleft -= 1;
-        if (timeleft < 0) {
-            ShowModalEnd(totalPoints)
-        }
-    }, 1000);
-}
-
-function AddAnim(rot) {
-    let styleSheet = document.createElement("style")
-    styleSheet.innerText = `
-        .FondoRuleta{ 
-            animation: rAnim ${timeAnim}s cubic-bezier(0.4, 0, 0.2, 1); 
-            animation-fill-mode: forwards;
-        }
-        @keyframes rAnim {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(${rot}deg); }
-        }
-    `
-    document.head.appendChild(styleSheet)
-}
-
-function ShowModalEnd(pts) {
-    clearInterval(countdownTimer);
-    return new Promise((resolve,reject)=>{
-        let modalEnd = `
-            <div class="ContenedorPuntaje">
-                <div class="OverlayFinal"></div>
-                <div class="PuntajeFinal">
-                    <span class="NumeroPuntaje">${pts}</span>
-                    <br>
-                    <span> PUNTOS </span>
-                </div>
-                <a href="javascript:GoTo('../../index')" class="BotonFinalizar">FINALIZAR</a>
-            </div>
-            `
-        resolve(ñ('#modalEnd').innerHTML =modalEnd);
-    });
-}
-
-function getQuestions() {
-    let data = `
-       [
+[
     {
         "Questions":[
             {
@@ -434,7 +297,7 @@ function getQuestions() {
             },
             {
                 "id": "14",
-                "statement": "¿Cuando varias mujeres conviven o se juntan, pueden \\\"sincronizarse\\\" y tener el periodo al mismo tiempo?",
+                "statement": "¿Cuando varias mujeres conviven o se juntan, pueden \"sincronizarse\" y tener el periodo al mismo tiempo?",
                 "Answers":[
                     {
                         "id":"0",
@@ -539,7 +402,7 @@ function getQuestions() {
             },
             {
                 "id": "19",
-                "statement": "¿A qué novela pertenece la canción \\\"Soy una cantante\\\"?",
+                "statement": "¿A qué novela pertenece la canción \"Soy una cantante\"?",
                 "Answers":[
                     {
                         "id":"0",
@@ -771,8 +634,3 @@ function getQuestions() {
         ]   
     }
 ]
-
-    `
-    return JSON.parse(data)[0].Questions
-    
-}
