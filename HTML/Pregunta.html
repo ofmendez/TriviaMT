@@ -1,26 +1,35 @@
 <!doctype html>
 <html lang="es-CO">
-   <head>
-      <meta charset="UTF-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Periotando con Manuel Turizo</title>
-      <link rel="stylesheet" href="../CSS/StyleSheet.css">
-      <link rel="icon" type="image/x-icon" href="../Images/Favicon.png">
-      <script src="../js/main.js" defer></script>
-   </head>
-   <body>
-      <div class="Content">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Periotando con Manuel Turizo</title>
+   <link rel="stylesheet" href="../CSS/StyleSheet.css">
+   <link rel="icon" type="image/x-icon" href="../Images/Favicon.png">
+   <script src="../js/main.js" defer></script>
+</head>
+
+<body>
+   <div class="Content">
       <img src="../Images/FondoTampon.jpg" id="BackgroundImage" alt="">
-      <div class="FondoTiempo"><div class="NumerosTiempo">00</div></div>
+      <div class="FondoTiempo">
+         <div class="NumerosTiempo">00</div>
+      </div>
       <div style="height:16vh;"></div>
-      <div class="BloquePreguntas ">
-      <!-- <div class="BloquePreguntas PreguntaIncorrecta"> -->
+      <div class="BloquePreguntas" id="questionBlock">
+         <!-- <div class="BloquePreguntas PreguntaIncorrecta"> -->
          <span id="statement"></span>
-      <!--Retroalimentación Respuesta -->
-         <div class="TextoCorrecto" style="display:none">CORRECTO</div>
-         <div class="TextoIncorrecto" style="display:none"><span class="TextoIncorrectoEstiloInicio">NO ES </span>CORRECTO</div>
-           <!--Retroalimentación Respuesta -->
+         <!--Retroalimentación Respuesta -->
+         <div class="TextoCorrecto" id="correctText" nodisplay>
+            <span> CORRECTO</span>
+         </div>
+         <div class="TextoIncorrecto" id="incorrectText" nodisplay>
+            <span class="TextoIncorrectoEstiloInicio">NO ES </span>
+            <span>CORRECTO</span>
+         </div>
+         <!--Retroalimentación Respuesta -->
       </div>
       <div style="height:6vh;"></div>
       <div class="BloqueRespuestas" id="contRespuestas">
@@ -44,10 +53,11 @@
             </div>
          </div>
       </div>
-      <a id="nextQuestion" class="BotonSeguirJugando" transparent>SEGUIR JUGANDO</a>
+      <a id="nextQuestion" class="BotonSeguirJugando is-active" transparent>SEGUIR JUGANDO</a>
 
       <div id="modalEnd"> </div>
 
 
-   </body>
+</body>
+
 </html>

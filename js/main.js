@@ -3,51 +3,48 @@ function ConmuteClassAndInner(element, c1, c2){ element.classList.add(c1); eleme
 Element.prototype.ñappend = function(newE) { this.appendChild(newE); }
 Element.prototype.ñclick = function(callback) { this.addEventListener("click", (e)=> { callback(e); }); };
 
+const timeMsg = 5
 const turns = 4
-const timeAnim = 5
+const timeAnim = 4
 const urlParams = new URLSearchParams(window.location.search);
 const actualQuestion=   Array.from(urlParams.values())[0]??-1;
+const pointsBySuccess = 100
+const timeByAns = 60
+
+
 let countdownTimer = {}
-let totalPoints = 0
-let pointsBySuccess = 100
-let timeByAns = 60
+let countdownTimer2 = {}
 let timeleft = timeByAns-1
-
-
+let ended = false
 
 function RandomInt(max) {
     return Math.floor(Math.random() * max);
 }
+
 function GoTo(url,par) {
     location.href = './HTML/'+url+'.html'+'?'+par
 }
 
-
-
 function ShowMessageCharacter(id) {
-    return new Promise((resolve,reject)=>{
-        let msg = `
-            <img src="../Images/Ventana${id}.jpg" id="BackgroundImageMsg" alt="">
-        `
-        resolve(ñ('#messageCharacter').innerHTML =msg);
-    });
+    let msg = ` <img src="../Images/Ventana${id}.jpg" id="BackgroundImageMsg" alt=""> `
+    ñ('#messageCharacter').innerHTML =msg
 }
 
 window.addEventListener("load",()=>{
-    // today =  Date.now();
-    // setTimeout(() => {console.log(Date.now()-today );}, 2000);
-    // console.log(today );
-
     ñ("#playGame")?.ñclick(() => SetNewGame() );
     ñ("#spinRoulette")?.ñclick(()=> Spin());
     ñ("#nextQuestion")?.ñclick(()=> GoTo('../Ruleta',''));
-    if(actualQuestion>=0)
+    if(parseInt(actualQuestion)>=0)
         SetQuestion(getQuestions()[actualQuestion]);
 });
 
 function SetNewGame() {
     GoTo('Ruleta','')
+    ended = false
     localStorage.setItem("time", Date.now());
+    localStorage.setItem("score", 0);
+    localStorage.answered = JSON.stringify([]);
+    localStorage.rouletted = JSON.stringify([]);
 }
 
 function SetQuestion(q) {
@@ -61,8 +58,9 @@ function SetQuestion(q) {
 
 function Answer(ans) {
     let classTarget = ans.isCorrect ?'RespuestaCorrecta':'RespuestaIncorrecta';
-
-    totalPoints += ans.isCorrect? pointsBySuccess:0
+    ñ('#questionBlock').classList.add(ans.isCorrect? "PreguntaCorrecta":"PreguntaIncorrecta");
+    ñ((ans.isCorrect?'#':'#in')+'correctText').removeAttribute('nodisplay')
+    localStorage.setItem("score", parseInt(localStorage.getItem("score"))+(ans.isCorrect? pointsBySuccess:0));
     AnimateAnswer(ñ('#ans'+ans.id), classTarget,  120);
 }
 
@@ -77,25 +75,55 @@ const AnimateAnswer = ( element, classTarget, interval)=>{
     setTimeout(() => { ñ('#nextQuestion').removeAttribute('transparent');}, interval*5);
 }
 
-
 function Spin(){
-    target = RandomInt(6);
+    RunTimer();
+    let rouletted =Array.from(JSON.parse(localStorage.rouletted))
+    ñ('#spinRoulette').classList.add('avoidEvents');
+    target = -1
+    while(target < 0  ){
+        let n1 = RandomInt(6) 
+        if(rouletted.includes(n1) && rouletted.length < 6)
+            continue
+        target = n1
+    }
     AddAnim(turns*360+target*60);
     setTimeout(() => {ShowMessageCharacter(target);GoQuestion(target)}, timeAnim*1000)
 }
 
-function GoQuestion(qId) {
-    setTimeout(() => {GoTo('../Pregunta',`q=${qId}`)}, 1950);
+function GoQuestion(target) {
+    qId= SelectQuestion(target);
+    let answered  = Array.from(JSON.parse(localStorage.answered))
+    answered.push(qId) 
+    let rouletted  = Array.from(JSON.parse(localStorage.rouletted))
+    rouletted.push(target) 
+    localStorage.answered = JSON.stringify(answered);
+    localStorage.rouletted = JSON.stringify(rouletted);
+    countdownTimer2 = setTimeout(() => {if(!ended)GoTo('../Pregunta',`q=${qId}`)}, (timeMsg*1000)-50);
 }
 
+function SelectQuestion(target) {
+    let answered = Array.from(JSON.parse(localStorage.answered))
+    let idQ = -1
+    while(idQ < 0  ){
+        let n1 = RandomInt(30) 
+        if(answered.includes(n1) || isCategory(n1, target))
+            continue
+        idQ = n1
+    }
+    return idQ
+}
+function isCategory(idq, target) {
+    result = (target%2 ===0 && idq < 15 ) || (target%2 !==0 && idq > 14 )
+    return result
+}
 const RunTimer = ()=>{
     timeleft = timeByAns-parseInt((Date.now()- localStorage.getItem("time"))/1000);
-    ñ(".FondoTiempo")[0].textContent =timeleft+1
+    ñ(".NumerosTiempo")[0].textContent =timeleft+1
     countdownTimer = setInterval(() => {
-        ñ(".FondoTiempo")[0].textContent =timeleft
+        ñ(".NumerosTiempo")[0].textContent =timeleft
         timeleft -= 1;
         if (timeleft < 0) {
-            ShowModalEnd(totalPoints)
+            ShowModalEnd()
         }
     }, 1000);
 }
@@ -115,15 +143,15 @@ function AddAnim(rot) {
     document.head.appendChild(styleSheet)
 }
 
-function ShowModalEnd(pts) {
-    clearInterval(countdownTimer);
+function ShowModalEnd() {
     return new Promise((resolve,reject)=>{
+        clearInterval(countdownTimer);
+        ended = true
         let modalEnd = `
             <div class="ContenedorPuntaje">
                 <div class="OverlayFinal"></div>
                 <div class="PuntajeFinal">
-                    <span class="NumeroPuntaje">${pts}</span>
-                    <br>
+                    <span class="NumeroPuntaje">${localStorage.getItem("score")}</span> <br>
                     <span> PUNTOS </span>
                 </div>
                 <a href="javascript:GoTo('../../index')" class="BotonFinalizar">FINALIZAR</a>
