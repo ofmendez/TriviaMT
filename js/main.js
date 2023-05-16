@@ -8,6 +8,7 @@ const turns = 4
 const timeAnim = 4
 const urlParams = new URLSearchParams(window.location.search);
 const actualQuestion=   Array.from(urlParams.values())[0]??-1;
+const actualTarget=  parseInt( Array.from(urlParams.values())[1]??-1 );
 const pointsBySuccess = 100
 const timeByAns = 60
 
@@ -49,6 +50,7 @@ function SetNewGame() {
 
 function SetQuestion(q) {
     RunTimer()
+    ñ('#BackgroundImage').src =`../Images/Fondo${actualTarget%2==0?"MT":actualTarget}.jpg`
     ñ('#statement').innerHTML = q.statement
     q.Answers.forEach((ans,i) =>{ 
         ñ('#ans'+i).innerHTML = ans.text;
@@ -98,7 +100,7 @@ function GoQuestion(target) {
     rouletted.push(target) 
     localStorage.answered = JSON.stringify(answered);
     localStorage.rouletted = JSON.stringify(rouletted);
-    countdownTimer2 = setTimeout(() => {if(!ended)GoTo('../Pregunta',`q=${qId}`)}, (timeMsg*1000)-50);
+    countdownTimer2 = setTimeout(() => {if(!ended)GoTo('../Pregunta',`q=${qId}&t=${target}`)}, (timeMsg*1000)-50);
 }
 
 function SelectQuestion(target) {
