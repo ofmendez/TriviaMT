@@ -6,6 +6,7 @@
 	border: none;
 	outline: none;
 	font-family: Kotex-Bold;
+	overflow: hidden;
 }
 
 body {
@@ -136,6 +137,7 @@ img {
 	left: 50%;
 	width: 85%;
 	height: 48%;
+	overflow: visible;
 }
 
 .FondoRuleta {
@@ -187,6 +189,7 @@ img {
 	bottom:0;
 	right:0;
 	line-height: 0.5em;
+	overflow: visible;
 }
 
 .BloquePreguntas {
@@ -199,19 +202,20 @@ img {
 	display: inline-block;
 	padding: 6vw 6vw 4vw 6vw;
 	filter: drop-shadow(0px 0px 15px #f416b8);
-
+	overflow: visible;
 }
 
 .BloqueRespuestas {
 	width: 80%;
 	margin: 0 auto;
+	overflow: visible;
 }
 
 .ContenedorRespuesta {
 
 	display: flex;
 	align-items: center;
-
+	overflow: visible;
 }
 
 .EmoticonRespuestas {
