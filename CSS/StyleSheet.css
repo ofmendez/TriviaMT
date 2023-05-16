@@ -65,6 +65,7 @@ img {
 	left: 50%;
 	width: 54%;
 	height: 30.6%;
+	overflow:visible;
 }
 
 .FondoRuletaHome {
