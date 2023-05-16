@@ -177,7 +177,7 @@ function getQuestions() {
                     },
                     {
                         "id":"1",
-                        "text":"28 días aproximadamente. ",
+                        "text":"28 días aproximadamente.",
                         "isCorrect": true 
                     },
                     {
@@ -210,7 +210,7 @@ function getQuestions() {
             },
             {
                 "id": "2",
-                "statement": "¿Qué alimentos debi evitar durante la menstruación?",
+                "statement": "¿Qué alimentos debo evitar durante la menstruación?",
                 "Answers":[
                     {
                         "id":"0",
@@ -219,7 +219,7 @@ function getQuestions() {
                     },
                     {
                         "id":"1",
-                        "text":"Sal, azúcares refinadas, embutidos y cafeina. ",
+                        "text":"Sal, azúcares refinadas, embutidos y cafeina.",
                         "isCorrect": true 
                     },
                     {
@@ -240,7 +240,7 @@ function getQuestions() {
                     },
                     {
                         "id":"1",
-                        "text":"Si no lo sientes lo hiciste muy bien, el cordón siempre debe colgar fuera del cuerpo. ",
+                        "text":"Si no lo sientes lo hiciste muy bien, el cordón siempre debe colgar fuera del cuerpo.",
                         "isCorrect": true 
                     },
                     {
@@ -256,7 +256,7 @@ function getQuestions() {
                 "Answers":[
                     {
                         "id":"0",
-                        "text":"8 horas. ",
+                        "text":"8 horas.",
                         "isCorrect": true 
                     },
                     {
@@ -287,7 +287,7 @@ function getQuestions() {
                     },
                     {
                         "id":"2",
-                        "text":"Todas las anteriores. ",
+                        "text":"Todas las anteriores.",
                         "isCorrect": true 
                     }
                 ]
@@ -303,7 +303,7 @@ function getQuestions() {
                     },
                     {
                         "id":"1",
-                        "text":"Esta calculadora del periodo te ayuda a rastrear tu ovulación e incluso predecir tus futuros periodos. ",
+                        "text":"Esta calculadora del periodo te ayuda a rastrear tu ovulación e incluso predecir tus futuros periodos.",
                         "isCorrect": true 
                     },
                     {
@@ -345,7 +345,7 @@ function getQuestions() {
                     },
                     {
                         "id":"1",
-                        "text":"Con una cobertura suave con el algodón, no posee colorantes ni fragancias, está hecha con fibras naturales y cuenta con una cobertura extra suave. ",
+                        "text":"Con una cobertura suave como el algodón, no posee colorantes ni fragancias, está hecha con fibras naturales y cuenta con una cobertura extra suave. ",
                         "isCorrect": true 
                     },
                     {
@@ -371,14 +371,14 @@ function getQuestions() {
                     },
                     {
                         "id":"2",
-                        "text":"Todas las anteriores. ",
+                        "text":"Todas las anteriores.",
                         "isCorrect": true 
                     }
                 ]
             },
             {
                 "id": "10",
-                "statement": "Luego de la menarquía o primera regla no se crece más.",
+                "statement": "Luego de la menarquia o primera regla no se crece más.",
                 "Answers":[
                     {
                         "id":"0",
@@ -387,7 +387,7 @@ function getQuestions() {
                     },
                     {
                         "id":"1",
-                        "text":"Falso. ",
+                        "text":"Falso.",
                         "isCorrect": true 
                     },
                     {
@@ -403,7 +403,7 @@ function getQuestions() {
                 "Answers":[
                     {
                         "id":"0",
-                        "text":"Varía según el ciclo. ",
+                        "text":"Varía según el ciclo.",
                         "isCorrect": true 
                     },
                     {
@@ -424,12 +424,12 @@ function getQuestions() {
                 "Answers":[
                     {
                         "id":"0",
-                        "text":"Sin pensarlo mucho.",
+                        "text":"Sin Pensarlo Mucho.",
                         "isCorrect": false 
                     },
                     {
                         "id":"1",
-                        "text":"Síndrome pre menstrual. ",
+                        "text":"Síndrome Pre Menstrual.",
                         "isCorrect": true 
                     },
                     {
@@ -441,7 +441,7 @@ function getQuestions() {
             },
             {
                 "id": "13",
-                "statement": "¿Si nadas teniendo la regla, los tiburones te atacarán?",
+                "statement": "¿Sí nadas teniendo la regla, los tiburones te atacarán?",
                 "Answers":[
                     {
                         "id":"0",
@@ -450,7 +450,7 @@ function getQuestions() {
                     },
                     {
                         "id":"1",
-                        "text":"Aunque la sangre atrae a los tiburones, el riesgo de que te muerda uno no aumenta cuando tienes tu periodo. ",
+                        "text":"Aunque la sangre atrae a los tiburones, el riesgo de que te muerda uno no aumenta cuando tienes tu periodo.",
                         "isCorrect": true 
                     },
                     {
@@ -476,7 +476,7 @@ function getQuestions() {
                     },
                     {
                         "id":"2",
-                        "text":"Algunas investigaciones indican que es cierto, pero otras muestras que no. Aunque es difícil de demostrar, es posible que sí haya algo de cierto en este mito. ",
+                        "text":"Algunas investigaciones indican que es cierto, pero otras muestras que no. Aunque es difícil de demostrar, es posible que sí haya algo de cierto en este mito.",
                         "isCorrect": true 
                     }
                 ]
@@ -492,7 +492,7 @@ function getQuestions() {
                     },
                     {
                         "id":"1",
-                        "text":"12 de abril de 2000. ",
+                        "text":"12 de abril de 2000.",
                         "isCorrect": true 
                     },
                     {
@@ -518,7 +518,7 @@ function getQuestions() {
                     },
                     {
                         "id":"2",
-                        "text":"Julián Turizo. ",
+                        "text":"Julián Turizo.",
                         "isCorrect": true 
                     }
                 ]
@@ -539,7 +539,7 @@ function getQuestions() {
                     },
                     {
                         "id":"2",
-                        "text":"Montería. ",
+                        "text":"Montería.",
                         "isCorrect": true 
                     }
                 ]
@@ -555,7 +555,7 @@ function getQuestions() {
                     },
                     {
                         "id":"1",
-                        "text":"Nicky Jam. ",
+                        "text":"Nicky Jam.",
                         "isCorrect": true 
                     },
                     {
@@ -571,7 +571,7 @@ function getQuestions() {
                 "Answers":[
                     {
                         "id":"0",
-                        "text":"La reina del flow. ",
+                        "text":"La reina del flow.",
                         "isCorrect": true 
                     },
                     {
@@ -592,12 +592,12 @@ function getQuestions() {
                 "Answers":[
                     {
                         "id":"0",
-                        "text":"ADN Tour. ",
+                        "text":"ADN Tour.",
                         "isCorrect": true 
                     },
                     {
                         "id":"1",
-                        "text":"Dopamina tour.",
+                        "text":"Dopamina Tour.",
                         "isCorrect": false 
                     },
                     {
@@ -618,7 +618,7 @@ function getQuestions() {
                     },
                     {
                         "id":"1",
-                        "text":"Mote de queso. ",
+                        "text":"Mote de queso.",
                         "isCorrect": true 
                     },
                     {
@@ -644,7 +644,7 @@ function getQuestions() {
                     },
                     {
                         "id":"2",
-                        "text":"Juan Luis Guerra, Rubén Blades y Bruno Mars. ",
+                        "text":"Juan Luis Guerra, Rubén Blades y Bruno Mars.",
                         "isCorrect": true 
                     }
                 ]
@@ -665,7 +665,7 @@ function getQuestions() {
                     },
                     {
                         "id":"2",
-                        "text":"Los caballos. ",
+                        "text":"Los caballos.",
                         "isCorrect": true 
                     }
                 ]
@@ -681,7 +681,7 @@ function getQuestions() {
                     },
                     {
                         "id":"1",
-                        "text":"3. ",
+                        "text":"3.",
                         "isCorrect": true 
                     },
                     {
@@ -697,7 +697,7 @@ function getQuestions() {
                 "Answers":[
                     {
                         "id":"0",
-                        "text":"Llenar el estadio de Montería. ",
+                        "text":"Llenar el estadio de Montería.",
                         "isCorrect": true 
                     },
                     {
@@ -723,7 +723,7 @@ function getQuestions() {
                     },
                     {
                         "id":"1",
-                        "text":"En Montería en una discoteca. ",
+                        "text":"En Montería en una discoteca.",
                         "isCorrect": true 
                     },
                     {
@@ -739,7 +739,7 @@ function getQuestions() {
                 "Answers":[
                     {
                         "id":"0",
-                        "text":"De época. ",
+                        "text":"De época.",
                         "isCorrect": true 
                     },
                     {
@@ -770,7 +770,7 @@ function getQuestions() {
                     },
                     {
                         "id":"2",
-                        "text":"La guanabana. ",
+                        "text":"La guanabana.",
                         "isCorrect": true 
                     }
                 ]
@@ -791,7 +791,7 @@ function getQuestions() {
                     },
                     {
                         "id":"2",
-                        "text":"2000. ",
+                        "text":"2000.",
                         "isCorrect": true 
                     }
                 ]
