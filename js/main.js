@@ -90,7 +90,7 @@ function GoQuestion(qId) {
 
 const RunTimer = ()=>{
     timeleft = timeByAns-parseInt((Date.now()- localStorage.getItem("time"))/1000);
-    ñ(".FondoTiempo")[0].textContent =timeleft
+    ñ(".FondoTiempo")[0].textContent =timeleft+1
     countdownTimer = setInterval(() => {
         ñ(".FondoTiempo")[0].textContent =timeleft
         timeleft -= 1;
