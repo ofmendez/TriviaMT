@@ -21,6 +21,20 @@
          <img src="Images/PersonajeHome.png" class="PersonajeHome" />
          <img src="Images/Btn_Jugar.svg" class="Btn_Jugar" id="playGame"/>
       </div>
+      <button id="BotonFullscreen" type="button">Full Screen</button>
+      <script>
+         const elem = document.getElementById("Content");
+         const botonFullscreen = document.getElementById("BotonFullscreen");
+         
+         botonFullscreen.addEventListener('click', () => {
+           if (elem.webkitRequestFullScreen) {
+             elem.webkitRequestFullScreen();
+             botonFullscreen.style.display = "none";
+           }
+         });
+         
+         
+         </script>
    </body>
    <script src="./js/main.js" defer></script>
 </html>
