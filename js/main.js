@@ -1,3 +1,5 @@
+import * as views from "./views.js";
+
 function ñ(el) { switch (el.charAt(0)) { case "#":  return document.querySelector(el); case ".":  return Array.from(document.querySelectorAll(el)); default:   return document.getElementsByTagName(el); } }
 function ConmuteClassAndInner(element, c1, c2){ element.classList.add(c1); element.classList.remove(c2); }
 Element.prototype.ñappend = function(newE) { this.appendChild(newE); }
@@ -7,41 +9,56 @@ const timeMsg = 5
 const turns = 4
 const timeAnim = 4
 const urlParams = new URLSearchParams(window.location.search);
-const actualQuestion=   Array.from(urlParams.values())[0]??-1;
-const actualTarget=  parseInt( Array.from(urlParams.values())[1]??-1 );
 const pointsBySuccess = 100
 const timeByAns = 60
 
 
+let actualTarget=  -1 //parseInt( Array.from(urlParams.values())[1]??-1 );
+let actualQuestion= -1//  Array.from(urlParams.values())[0]??-1;
 let countdownTimer = {}
 let countdownTimer2 = {}
 let timeleft = timeByAns-1
 let ended = false
+window.views = views
 
+views.GoTo('Wellcome').then(()=>{
+    const elem = document.getElementById("Content");
+
+    document.getElementById("BotonFullscreen").addEventListener('click', () => {
+        if (elem.webkitRequestFullScreen) {
+            ñ('body')[0].requestFullscreen();
+            document.getElementById("BotonFullscreen").style.display = "none";
+        }
+    });
+    ñ("#playGame")?.ñclick(() => SetNewGame() );
+
+})
+
+
+window.Restart= ()=> {
+    views.GoTo('Wellcome').then(()=>{
+        ñ("#playGame")?.ñclick(() => SetNewGame() );
+    })
+}
 function RandomInt(max) {
     return Math.floor(Math.random() * max);
 }
 
-function GoTo(url,par) {
-    location.href = './HTML/'+url+'.html'+'?'+par
-}
 
 function ShowMessageCharacter(id) {
     let msg = ` <img src="../Images/Ventana${id}.jpg" id="BackgroundImageMsg" alt=""> `
     ñ('#messageCharacter').innerHTML =msg
 }
 
-window.addEventListener("load",()=>{
-    ñ("#playGame")?.ñclick(() => SetNewGame() );
-    ñ("#spinRoulette")?.ñclick(()=> Spin());
-    ñ("#nextQuestion")?.ñclick(()=> GoTo('../Ruleta',''));
-    if(parseInt(actualQuestion)>=0)
-        SetQuestion(getQuestions()[actualQuestion]);
-});
 
 function SetNewGame() {
-    GoTo('Ruleta','')
+    views.GoTo('Ruleta').then(()=> {
+        ñ("#spinRoulette")?.ñclick(()=> Spin());
+    });
+    timeleft = timeByAns
     ended = false
+    actualQuestion= -1
+    actualTarget=  -1 
     localStorage.setItem("time", Date.now());
     localStorage.setItem("score", 0);
     localStorage.answered = JSON.stringify([]);
@@ -49,7 +66,7 @@ function SetNewGame() {
 }
 
 function SetQuestion(q) {
-    RunTimer()
+    
     ñ('#BackgroundImage').src =`../Images/Fondo${actualTarget%2==0?"MT":actualTarget}.jpg`
     ñ('#statement').innerHTML = q.statement
     q.Answers.forEach((ans,i) =>{ 
@@ -79,9 +96,9 @@ const AnimateAnswer = ( element, classTarget, interval)=>{
 
 function Spin(){
     RunTimer();
-    let rouletted =Array.from(JSON.parse(localStorage.rouletted))
     ñ('#spinRoulette').classList.add('avoidEvents');
-    target = -1
+    let rouletted =Array.from(JSON.parse(localStorage.rouletted))
+    let target = -1
     while(target < 0  ){
         let n1 = RandomInt(6) 
         if(rouletted.includes(n1) && rouletted.length < 6)
@@ -93,14 +110,31 @@ function Spin(){
 }
 
 function GoQuestion(target) {
-    qId= SelectQuestion(target);
+    let qId= SelectQuestion(target);
     let answered  = Array.from(JSON.parse(localStorage.answered))
     answered.push(qId) 
     let rouletted  = Array.from(JSON.parse(localStorage.rouletted))
     rouletted.push(target) 
     localStorage.answered = JSON.stringify(answered);
     localStorage.rouletted = JSON.stringify(rouletted);
-    countdownTimer2 = setTimeout(() => {if(!ended)GoTo('../Pregunta',`q=${qId}&t=${target}`)}, (timeMsg*1000)-50);
+    // clearInterval(countdownTimer)
+    countdownTimer2 = setTimeout(() => {
+        if(!ended)
+            views.GoTo('Pregunta').then(()=>{
+                actualQuestion = qId
+                actualTarget= target
+                SetQuestion(getQuestions()[parseInt(actualQuestion)]);
+                ñ("#nextQuestion")?.ñclick(()=> {
+                    views.GoTo('Ruleta').then(()=>{
+                        SetRoulette()
+                    });
+                });
+            });
+    }, (timeMsg*1000)-50);
+}
+
+function SetRoulette() {
+    ñ("#spinRoulette")?.ñclick(()=> Spin());
 }
 
 function SelectQuestion(target) {
@@ -115,14 +149,15 @@ function SelectQuestion(target) {
     return idQ
 }
 function isCategory(idq, target) {
-    result = (target%2 ===0 && idq < 15 ) || (target%2 !==0 && idq > 14 )
+    let result = (target%2 ===0 && idq < 15 ) || (target%2 !==0 && idq > 14 )
     return result
 }
 const RunTimer = ()=>{
-    timeleft = timeByAns-parseInt((Date.now()- localStorage.getItem("time"))/1000);
+    clearInterval(countdownTimer)
     ñ(".NumerosTiempo")[0].textContent =timeleft+1
     countdownTimer = setInterval(() => {
         ñ(".NumerosTiempo")[0].textContent =timeleft
+        console.log(timeleft);
         timeleft -= 1;
         if (timeleft < 0) {
             ShowModalEnd()
@@ -142,7 +177,7 @@ function AddAnim(rot) {
             to { transform: rotate(${rot}deg); }
         }
     `
-    document.head.appendChild(styleSheet)
+    ñ('.FondoRuleta')[0].appendChild(styleSheet)
 }
 
 function ShowModalEnd() {
@@ -156,7 +191,7 @@ function ShowModalEnd() {
                     <span class="NumeroPuntaje">${localStorage.getItem("score")}</span> <br>
                     <span> PUNTOS </span>
                 </div>
-                <a href="javascript:GoTo('../../index')" class="BotonFinalizar">FINALIZAR</a>
+                <a href="javascript:window.Restart()" class="BotonFinalizar">FINALIZAR</a>
             </div>
             `
         resolve(ñ('#modalEnd').innerHTML =modalEnd);
