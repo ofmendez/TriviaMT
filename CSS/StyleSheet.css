@@ -58,16 +58,20 @@ img {
 }
 
 #BotonFullscreen{
-	width:30vw;
 	position: absolute;
-	top:3%;
+	top:5%;
 	left:3%;
 	font-size: 4vw;
     background-color: #470f86;
     color: white;
     border-radius: 10vw;
-    padding: 2vw 1vw .9vw 1vw;
+    padding: 2vw 2vw .9vw 2vw;
 	z-index: 100;
+}
+
+.FullScreenIcon{
+	width:4vw;
+	color: white;
 }
 
 /* Página Home */

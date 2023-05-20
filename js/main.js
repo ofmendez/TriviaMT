@@ -27,7 +27,6 @@ views.GoTo('Wellcome').then(()=>{
     document.getElementById("BotonFullscreen").addEventListener('click', () => {
         if (elem.webkitRequestFullScreen) {
             ñ('body')[0].requestFullscreen();
-            document.getElementById("BotonFullscreen").style.display = "none";
         }
     });
     ñ("#playGame")?.ñclick(() => SetNewGame() );
