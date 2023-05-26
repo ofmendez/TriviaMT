@@ -129,9 +129,36 @@ img {
 }
 
 
-/* Página Home */
+/* Página Ruleta */
+
+.ImagenInstrucciones{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 70%;
+	transform: translate(-50%, -50%);
+	z-index: 10;
+	filter: drop-shadow(0px 0px 14px #000000bb);
+}
 
 .ContainerRuleta {
+	position: absolute;
+	transform: translate(-50%, -50%);
+	top: 52%;
+	left: 50%;
+	width: 85%;
+	height: 48%;
+	
+}
+
+.FondoRuleta {
+	position: absolute;
+	z-index: 5;
+	top: 0;
+	left: 0;
+}
+
+.ContainerSombraRuleta {
 	position: absolute;
 	transform: translate(-50%, -50%);
 	top: 52%;
@@ -141,9 +168,8 @@ img {
 	overflow: visible;
 }
 
-.FondoRuleta {
+.SombraRuleta{
 	position: absolute;
-	z-index: 5;
 	top: 0;
 	left: 0;
 	filter: drop-shadow(0px 0px 30px #f416b8);
