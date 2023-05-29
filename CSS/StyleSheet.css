@@ -209,6 +209,7 @@ img {
 	font-weight: 900;
 	text-align: left;
 	filter: drop-shadow(0px 0px 4px #000000bb);
+	z-index: 1;
 }
 
 .NumerosTiempo{
