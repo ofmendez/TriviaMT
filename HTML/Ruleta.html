@@ -10,12 +10,13 @@
       <script src="../js/main.js"  defer></script>
    </head>
    <body>
-      <div class="NumerosTiempo" nodisplay></div>
       <div class="Content">
          <img src="../Images/FondoRuleta.jpg" id="BackgroundImage" class="FondoPaginaRuleta" alt="">
-
-         <img src="../Images/PopUpInstrucciones.png" class="ImagenInstrucciones" style="display: none;" />
-
+         <div class="FondoTiempo">
+            <div class="NumerosTiempo">00</div>
+         </div>
+         <img src="../Images/PopUpInstrucciones.png" class="ImagenInstrucciones" id="instructions" />
+         
          <div class="ContainerSombraRuleta">
             <img src="../Images/Ruleta.png" class="SombraRuleta" />
          </div>
@@ -25,11 +26,9 @@
             <img src="../Images/Btn_Girar.svg" class="Btn_Girar" id="spinRoulette"/>
             <img src="../Images/IndicadorRuleta.png" class="IndicadorRuleta" />
          </div>
-
-      
-         
       </div>
       <div id="messageCharacter"> </div>
       <div id="modalEnd"> </div>
+
    </body>
 </html>

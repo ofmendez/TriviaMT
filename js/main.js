@@ -10,11 +10,12 @@ const urlParams = new URLSearchParams(window.location.search);
 const actualQuestion=   Array.from(urlParams.values())[0]??-1;
 const actualTarget=  parseInt( Array.from(urlParams.values())[1]??-1 );
 const pointsBySuccess = 100
-const timeByAns = 60
+const timeByAns = 59
 
 
 let countdownTimer = {}
 let countdownTimer2 = {}
+let countdownTimer3 = {}
 let timeleft = timeByAns-1
 let ended = false
 
@@ -27,29 +28,50 @@ function GoTo(url,par) {
 }
 
 function ShowMessageCharacter(id) {
+    if(id%2==0){
+        let s_mt = new Audio('../audio/Manuel.wav');
+        s_mt.play();
+    }
     let msg = ` <img src="../Images/Ventana${id}.jpg" id="BackgroundImageMsg" alt=""> `
     ñ('#messageCharacter').innerHTML =msg
 }
 
 window.addEventListener("load",()=>{
+    
     ñ("#playGame")?.ñclick(() => SetNewGame() );
     ñ("#spinRoulette")?.ñclick(()=> Spin());
     ñ("#nextQuestion")?.ñclick(()=> GoTo('../Ruleta',''));
+    if(!JSON.parse(localStorage.instructed))
+        countdownTimer3 = setInterval(() => {
+            clearInterval(countdownTimer3);
+            ñ('#instructions')?.setAttribute('nodisplay', true) 
+            localStorage.setItem("instructed", true);
+            localStorage.setItem("time", Date.now());
+            RunTimer()
+        }, 5000);
+    else
+        ñ('#instructions')?.setAttribute('nodisplay', true) 
+    
     if(parseInt(actualQuestion)>=0)
         SetQuestion(getQuestions()[actualQuestion]);
+    if(ñ(".NumerosTiempo").length > 0 && JSON.parse(localStorage.instructed) )
+        RunTimer();
+
 });
 
 function SetNewGame() {
     GoTo('Ruleta','')
     ended = false
     localStorage.setItem("time", Date.now());
+
+    localStorage.setItem("instructed", false);
     localStorage.setItem("score", 0);
     localStorage.answered = JSON.stringify([]);
     localStorage.rouletted = JSON.stringify([]);
 }
 
 function SetQuestion(q) {
-    RunTimer()
+    // RunTimer()
     ñ('#BackgroundImage').src =`../Images/Fondo${actualTarget%2==0?"MT":actualTarget}.jpg`
     ñ('#statement').innerHTML = q.statement
     q.Answers.forEach((ans,i) =>{ 
@@ -59,6 +81,8 @@ function SetQuestion(q) {
 }
 
 function Answer(ans) {
+    let s_ans = new Audio('../audio/'+(ans.isCorrect?'Ganar.mp3':'Fallar.mp3'));
+    s_ans.play();
     let classTarget = ans.isCorrect ?'RespuestaCorrecta':'RespuestaIncorrecta';
     ñ('#questionBlock').classList.add(ans.isCorrect? "PreguntaCorrecta":"PreguntaIncorrecta");
     ñ((ans.isCorrect?'#':'#in')+'correctText').removeAttribute('nodisplay')
@@ -78,10 +102,12 @@ const AnimateAnswer = ( element, classTarget, interval)=>{
 }
 
 function Spin(){
-    RunTimer();
+    // RunTimer();
+    let s_ruleta = new Audio('../audio/Ruleta.wav');
+    s_ruleta.play();
     let rouletted =Array.from(JSON.parse(localStorage.rouletted))
     ñ('#spinRoulette').classList.add('avoidEvents');
-    target = -1
+    let target = -1
     while(target < 0  ){
         let n1 = RandomInt(6) 
         if(rouletted.includes(n1) && rouletted.length < 6)
